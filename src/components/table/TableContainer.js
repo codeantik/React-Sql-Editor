@@ -51,12 +51,7 @@ const TableContainer = React.memo(({ query, isOpen }) => {
           </>
         ) : (
           <div className="flex justify-center items-center flex-1">
-            <ReactLoading
-              type="spin"
-              color="#3A4374"
-              height={50}
-              width={50}
-            />
+            <h1>Loading...</h1>
           </div>
         )}
       </section>

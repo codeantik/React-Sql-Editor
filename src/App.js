@@ -14,7 +14,7 @@ const App = () => {
   const [value, setValue] = useState(`select * from categories`);
 
   return (
-    <div className='min-h-screen relative'>
+    <div className=''>
       <Suspense fallback={
         <div className='text-center flex justify-center items-center text-violet-900'>
           <ReactLoading type={'spin'} color={'#4527a0'} />
