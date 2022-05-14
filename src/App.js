@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, useState } from 'react';
+import ReactLoading from 'react-loading';
 
-function App() {
+
+// components
+
+const Header = React.lazy(() => import('./components/header/Header.js'));
+const Editor = React.lazy(() => import('./components/editor/Editor.js'));
+const TableContainer = React.lazy(() => import("./components/table/TableContainer"));
+
+const App = () => {
+
+  const [query, setQuery] = useState("");
+  const [value, setValue] = useState(`select * from categories`);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='min-h-screen relative'>
+      <Suspense fallback={
+        <div className='text-center flex justify-center items-center text-violet-900'>
+          <ReactLoading type={'spin'} color={'#4527a0'} />
+        </div>
+      }>
+        <Header />
+        <Editor
+          setQuery={setQuery}
+          value={value}
+          setValue={setValue}
+        />
+        {query ? <TableContainer query={query}  /> : null}
+      </Suspense>
     </div>
   );
 }
